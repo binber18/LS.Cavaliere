@@ -1,0 +1,38 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Litters.EditLitterViewModel
+
+@{
+    ViewBag.Title = Model.Letter + " - Wurf";
+    ViewBag.ShowBanner = false;
+}
+
+<div class="row">
+    <div class="col-4">
+        <div class="d-flex flex-column">
+            @* <img class="img-fluid" src="@Url.GetLitterImageUrl(Model.Id, Model.HeroImage)" alt=""/> *@
+        </div>
+    </div>
+    <div class="col-8">
+        <form asp-controller="Litters" asp-action="Edit" asp-route-id="@Model.Id">
+            <h1>@ViewData["Title"]</h1>
+            <input asp-for="Id" hidden="hidden" readonly="readonly"/>
+            <input asp-for="Letter" hidden="hidden" readonly="readonly"/>
+            <div class="form-floating mb-2">
+                <input asp-for="LitterDate" value="@Model.LitterDate" type="date" class="form-control"/>
+                <label asp-for="LitterDate" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-2">
+                <input asp-for="Father" class="form-control"/>
+                <label asp-for="Father" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-2">
+                <input asp-for="Mother" class="form-control"/>
+                <label asp-for="Mother" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-2">
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <label asp-for="Description" class="form-label"></label>
+            </div>
+            <button class="btn btn-success">Speichern</button>
+        </form>
+    </div>
+</div>

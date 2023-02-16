@@ -1,0 +1,41 @@
+@model bool?
+@{
+    var textDark = (Model ?? false);
+    string textClass = textDark ? "text-white text-md-dark" : "text-white";
+}
+<header>
+    <nav class="navbar navbar-dark navbar-expand-md mx-md-5">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="/images/logo.svg" alt="@ViewData["KennelName"]" height="150px"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end bg-dark bg-md-none" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link @textClass" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @textClass" asp-controller="Litters" asp-action="Index">Würfe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @textClass" asp-controller="Dogs" asp-action="Index">Unsere Hunde</a>
+                        </li>
+                        <logged-in>
+                            <li class="nav-item">
+                                <a class="nav-link @textClass" asp-controller="Admin" asp-action="Logout">Logout</a>
+                            </li>
+                        </logged-in>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

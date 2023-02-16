@@ -1,0 +1,35 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Litters.CreateLitterViewModel
+
+@{
+    ViewBag.Title = "Neuer Wurf";
+    ViewData["ShowBanner"] = false;
+}
+
+<div class="form-center">
+    <form asp-controller="Litters" asp-action="Create" enctype="multipart/form-data">
+        <h1>@ViewData["Title"]</h1>
+        <div class="form-floating mb-2">
+            <select asp-for="Letter" class="form-control">
+                @foreach (var letter in Model.ValidLetters)
+                {
+                    <option value="@char.ToUpper(letter)">@(char.ToUpper(letter))</option>
+                }
+                }
+            </select>
+            <label asp-for="Letter" class="form-label"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="Father" class="form-control"/>
+            <label asp-for="Father" class="form-label"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="Mother" class="form-control"/>
+            <label asp-for="Mother" class="form-label"></label>
+        </div>
+        <div class="text-start mb-3">
+            <label asp-for="ParentImage" class="form-label"></label>
+            <input asp-for="ParentImage" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Speichern</button>
+    </form>
+</div>

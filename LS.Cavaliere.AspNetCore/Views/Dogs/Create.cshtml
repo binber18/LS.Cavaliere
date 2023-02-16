@@ -1,0 +1,42 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Admin.CreateDogViewModel
+
+@{
+    ViewBag.Title = "Neuer Hund";
+    ViewData["ShowBanner"] = false;
+}
+<div class="form-center mt-5">
+    <h1>@ViewData["Title"]</h1>
+    <form asp-controller="Dogs" asp-action="Create" enctype="multipart/form-data">
+        <div class="form-floating">
+            <input asp-for="Name" class="form-control"/>
+            <label asp-for="Name" class="form-label"></label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Birthday" class="form-control"/>
+            <label asp-for="Birthday" class="form-label"></label>
+            <span asp-validation-for="Birthday" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Father" class="form-control"/>
+            <label asp-for="Father" class="form-label"></label>
+            <span asp-validation-for="Father" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Mother" class="form-control"/>
+            <label asp-for="Mother" class="form-label"></label>
+            <span asp-validation-for="Mother" class="text-danger"></span>
+        </div>
+        <div class="form-floating">
+            <input asp-for="Description" class="form-control"/>
+            <label asp-for="Description" class="form-label"></label>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Image" class="form-label"></label>
+            <input asp-for="Image" class="form-control"/>
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Erstellen</button>
+    </form>
+</div>

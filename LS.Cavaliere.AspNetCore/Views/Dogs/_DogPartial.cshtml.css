@@ -1,0 +1,55 @@
+.dog {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    --dog-offset: -10px;
+}
+
+.dog__image {
+    grid-area: image;
+    height: 500px;
+    object-fit: contain;
+    border-radius: .5rem;
+}
+
+.dog__description {
+    grid-area: description;
+    padding: 1rem;
+    place-content: center;
+    margin: auto 0;
+    background-color: var(--description-background);
+    border-radius: .5rem;
+}
+
+@media (min-width: 768px) {
+    .dog {
+        display: grid;
+        grid-template-areas: "image description";
+        height: 500px;
+    }
+
+    .dog__image {
+        margin-left: auto;
+        margin-right: var(--dog-offset);
+    }
+
+    .dog__description {
+        margin: auto auto auto var(--dog-offset);
+    }
+
+    .dog:nth-child(even) {
+        grid-template-areas: "description image";
+    }
+
+    .dog:nth-child(even) .dog__image {
+        margin-left: var(--dog-offset);
+        margin-right: auto;
+    }
+
+    .dog:nth-child(even) .dog__description {
+        margin-left: auto;
+        margin-right: var(--dog-offset);
+    }
+}

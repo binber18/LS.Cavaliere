@@ -1,0 +1,22 @@
+@using LS.Cavaliere.Helpers
+@model IEnumerable<LS.Cavaliere.AspNetCore.ViewModels.Dogs.DogViewModel>
+
+@{
+    ViewBag.Title = "Unsere Hunde";
+}
+
+<admin>
+    <div class="d-flex flex-row-reverse">
+        <a asp-controller="Dogs" asp-action="Create" 
+           class="btn btn-success">
+            Neuer Hund <i class="fa fa-plus"></i>
+        </a>
+    </div>
+</admin>
+
+<div class="container mt-5">
+    @foreach (var dog in Model.EmptyIfNull())
+{
+    <partial name="_DogPartial" model="@dog"/>
+}
+</div>

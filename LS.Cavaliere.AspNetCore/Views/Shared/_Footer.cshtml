@@ -1,0 +1,8 @@
+<footer class="border-top footer text-muted bg-dark">
+    <div class="container">
+        &copy; @DateTime.Now.Year - @ViewData["KennelName"]
+        <not-logged-in>
+            - <a class="text-decoration-none text-muted" asp-area="" asp-controller="Admin" asp-action="Login">Admin Login</a>
+        </not-logged-in>
+    </div>
+</footer>

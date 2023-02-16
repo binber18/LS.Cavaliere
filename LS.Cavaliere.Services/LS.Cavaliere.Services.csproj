@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LS.Cavaliere.Helpers\LS.Cavaliere.Helpers.csproj" />
+      <ProjectReference Include="..\LS.Cavaliere.Logging\LS.Cavaliere.Logging.csproj" />
+      <ProjectReference Include="..\LS.Cavaliere.Models\LS.Cavaliere.Models.csproj" />
+      <ProjectReference Include="..\LS.Cavaliere.Repositories\LS.Cavaliere.Repositories.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    </ItemGroup>
+
+</Project>

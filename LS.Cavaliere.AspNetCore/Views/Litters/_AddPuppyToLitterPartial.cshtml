@@ -1,0 +1,22 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Litters.AddPuppyToLitterViewModel
+
+<form asp-controller="Litters" asp-action="AddPuppyToLitter" asp-route-id="@Model.Id"
+      enctype="multipart/form-data"
+      class="card" style="width: 18rem;">
+    <img class="card-img-top placeholder" alt="...">
+    <div class="card-body">
+        <p class="card-text">
+            <div class="form-floating">
+                <input asp-for="Name"
+                       class="form-control"/>
+                <label class="form-label">Name</label>
+            </div>
+            <div>
+                <label class="form-label">Foto</label>
+                <input asp-for="Image"
+                       class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-success">Welpen Speichern</button>
+        </p>
+    </div>
+</form>

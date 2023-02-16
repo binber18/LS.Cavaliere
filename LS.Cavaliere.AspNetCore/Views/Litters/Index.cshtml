@@ -1,0 +1,27 @@
+@using LS.Cavaliere.Helpers
+@model IEnumerable<LS.Cavaliere.Models.Litter>
+
+@{
+    ViewBag.Title = "Würfe";
+}
+
+
+<admin>
+    <div class="d-flex flex-row-reverse">
+        <a asp-controller="Litters" asp-action="Create"
+           class="btn btn-success">
+            Neuer Wurf <i class="fa fa-plus"></i>
+        </a>
+    </div>
+</admin>
+@if (Model.IsNullOrEmpty())
+{
+    <h2>Keine Würfe vorhanden</h2>
+    return;
+}
+<div>
+    @foreach (var litter in Model.EmptyIfNull())
+    {
+        <partial name="_LitterPartial" model="litter"/>
+    }
+</div>

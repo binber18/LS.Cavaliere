@@ -1,0 +1,62 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Dogs.DogDetailViewModel
+
+@{
+    ViewBag.Title = Model.Dog.Name;
+    ViewData["ShowBanner"] = false;
+}
+<admin>
+    <div class="d-flex flex-row-reverse">
+        <div>
+            <a asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Dog.Id"
+               class="btn btn-primary">
+                <i class="fa fa-pencil"></i>
+            </a>
+        </div>
+    </div>
+</admin>
+<div class="container mx-5">
+    <div class="row rounded-1">
+        <div class="col-lg-5">
+            <div class="dog-detail-image text-end mx-lg-5">
+                <div id="carouselDog" class="carousel slide">
+                    <div class="carousel-inner">
+                        @foreach (var image in Model.FileNames)
+                        {
+                            <div class="carousel-item rounded-2 @(Model.FileNames.FirstOrDefault() == image ? " active" : "")">
+                                <img src="@Url.GetDogImageUrl(Model.Dog.Id, image)" class="d-block w-100" alt="">
+                            </div>
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDog" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselDog" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <h1>@Model.Dog.Name</h1>
+            <p class="text-muted">@Model.Dog.BirthDay.ToShortDateString()</p>
+            <dl>
+                <div>
+                    <dt>@Model.Dog.Father</dt>
+                    <dd>Vater</dd>
+                </div>
+                <div class="mt-2">
+                    <dt>@Model.Dog.Mother</dt>
+                    <dd>Mutter</dd>
+                </div>
+            </dl>
+            @if (!string.IsNullOrWhiteSpace(Model.Dog.Description))
+            {
+                <p>
+                    @Model.Dog.Description
+                </p>
+            }
+        </div>
+    </div>
+</div>

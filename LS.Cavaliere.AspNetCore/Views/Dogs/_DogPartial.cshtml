@@ -1,0 +1,31 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Dogs.DogViewModel
+@{
+    var dog = Model.Dog;
+    var fileName = Model.ImageFileName;
+}
+
+<div class="dog position-relative">
+    <img src="@Url.GetDogImageUrl(dog.Id, fileName)"
+         alt="@dog.Name"
+         class="dog__image"/>
+    <div class="dog__description">
+        <h2>@dog.Name</h2>
+        <p class="text-muted mb-3">@dog.BirthDay.ToShortDateString()</p>
+        <dl>
+            <div>
+                <dt>@dog.Father</dt>
+                <dd>Vater</dd>
+            </div>
+            <div class="mt-2">
+                <dt>@dog.Mother</dt>
+                <dd>Mutter</dd>
+            </div>
+        </dl>
+        <p>
+            @dog.Description
+        </p>
+        <a asp-controller="Dogs" asp-action="Details" asp-route-id="@dog.Id" class="stretched-link">
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</div>

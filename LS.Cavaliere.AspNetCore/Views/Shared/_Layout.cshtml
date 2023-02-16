@@ -1,0 +1,62 @@
+﻿@{
+    string? pageTitle = ViewData["Title"] as string;
+    string? pageDescription = ViewData["Description"] as string;
+    bool showBanner = ViewData["ShowBanner"] as bool?
+                      ?? !string.IsNullOrWhiteSpace(pageDescription)
+                      || !string.IsNullOrWhiteSpace(pageTitle);
+}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="images/Logo.svg" type="image/svg+xml"/>
+    <title>@ViewData["Title"] - @ViewData["KennelName"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/LS.Cavaliere.AspNetCore.styles.css" asp-append-version="true"/>
+</head>
+<body>
+@if (showBanner)
+{
+    <div class="banner text-white">
+        <div class="banner-overlay mb-5">
+            <partial name="_Navigation" model="false"/>
+            <div>
+                <div class="text-center">
+                    @if (!string.IsNullOrWhiteSpace(pageTitle))
+                    {
+                        <h1 class="page-title">@pageTitle</h1>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(pageDescription))
+                    {
+                        <p class="page-description">@pageDescription</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div>
+        <div class="mb-5">
+            <partial name="_Navigation" model="true"/>
+        </div>
+    </div>
+}
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<partial name="_Footer"/>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="https://kit.fontawesome.com/2d741954fb.js" crossorigin="anonymous"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

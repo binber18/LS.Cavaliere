@@ -1,0 +1,33 @@
+@model LS.Cavaliere.AspNetCore.ViewModels.Admin.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    ViewData["ShowBanner"] = false;
+}
+
+<div class="text-center container login">
+    <h1>Login</h1>
+    <form asp-action="Login" asp-controller="Admin">
+        <div class="form-floating mb-2">
+            <input asp-for="LoginRequest.Username" class="form-control"/>
+            <label asp-for="LoginRequest.Username" class="form-label"></label>
+        </div>
+        <div class="form-floating mb-2">
+            <input asp-for="LoginRequest.Password" type="password" class="form-control"/>
+            <label asp-for="LoginRequest.Password" class="form-label"></label>
+        </div>
+        <div class="text-start mb-2">
+            <div class="form-check">
+                <input asp-for="LoginRequest.Persistent" class="form-check-input"/>
+                <label asp-for="LoginRequest.Persistent" class="form-check-label"></label>
+            </div>
+        </div>
+        @if (Model.LoginResult.Fail)
+        {
+            <div class="text-danger mb-2">@Model.LoginResult.Error</div>
+        }
+        <div>
+            <input class="btn btn-lg btn-primary w-100" type="submit" value="Login"/>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,67 @@
+@using LS.Cavaliere.Helpers
+@using LS.Cavaliere.AspNetCore.ViewModels.Litters
+@model LS.Cavaliere.Models.Litter
+
+@{
+    ViewBag.Title = Model.Letter + " - Wurf";
+    ViewBag.ShowBanner = false;
+}
+
+<admin>
+    <div class="d-flex flex-row-reverse">
+        <a asp-controller="Litters" asp-action="Edit" asp-route-id="@Model.Id"
+           class="btn btn-primary">
+            <i class="fa fa-pencil"></i>
+        </a>
+    </div>
+</admin>
+
+<div class="row">
+    <div class="col-4">
+        <div class="d-flex flex-column">
+            <img class="img-fluid mb-2" src="@Url.GetLitterImageUrl(Model.Id, Model.HeroImage)" alt=""/>
+            <dl class="row">
+                <div class="col">
+                    <dt>@Model.Father</dt>
+                    <dd>Vater</dd>
+                </div>
+                <div class="col">
+                    <dt>@Model.Mother</dt>
+                    <dd>Mutter</dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+    <div class="col-8">
+        <h1>@Model.Letter - Wurf</h1>
+        @if (Model.LitterDate is not null && Model.Puppies.Any())
+        {
+            <p>
+                Am @Model.LitterDate?.ToShortDateString() erblickten @Model.Puppies.Count() Welpen das Licht der Welt.
+            </p>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.Description))
+        {
+            <p>
+                @Model.Description
+            </p>
+        }
+    </div>
+</div>
+
+<ul class="row list-unstyled">
+    @{
+        const string col = "col-12 col-md-6 col-lg-4";
+    }
+    @foreach (var puppy in Model.Puppies.EmptyIfNull())
+    {
+        <li class="@col">
+            <partial name="_PuppyPartial" model="puppy"/>
+        </li>
+    }
+    <admin>
+        <li class="@col">
+            <partial name="_AddPuppyToLitterPartial" model="@(new AddPuppyToLitterViewModel(Model.Id, "", null))"/>
+        </li>
+    </admin>
+</ul>

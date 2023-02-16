@@ -1,0 +1,28 @@
+@model LS.Cavaliere.Models.Litter
+
+<div class="litter position-relative">
+    <img src="@Url.GetLitterImageUrl(Model.Id, Model.HeroImage)"
+         alt="@Model.Letter - Wurf"
+         class="litter__image"/>
+    <div class="litter__description">
+        <h2>@Model.Letter - Wurf</h2>
+        @if (Model.LitterDate is not null)
+        {
+            <p class="text-muted mb-3">@Model.LitterDate?.ToShortDateString()</p>
+        }
+        <dl>
+            <div>
+                <dt>@Model.Father</dt>
+                <dd>Vater</dd>
+            </div>
+            <div class="mt-2">
+                <dt>@Model.Mother</dt>
+                <dd>Mutter</dd>
+            </div>
+        </dl>
+        <a asp-controller="Litters" asp-action="Details" asp-route-id="@Model.Id"
+           class="stretched-link">
+            <i class="fa fa-arrow-right"></i>
+        </a>
+    </div>
+</div>

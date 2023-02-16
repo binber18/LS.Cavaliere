@@ -1,0 +1,77 @@
+@model LS.Cavaliere.Models.Requests.Dogs.UpdateDogRequest
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="row">
+    <div class="row">
+        <h1>@Model.Name</h1>
+        <form asp-controller="Dogs" asp-action="Edit" asp-route-id="@Model.Id">
+            <div class="form-floating">
+                <input asp-for="Name" class="form-control"/>
+                <label asp-for="Name" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Birthday" type="date" class="form-control"/>
+                <label asp-for="Birthday" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Father" class="form-control"/>
+                <label asp-for="Father" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Mother" class="form-control"/>
+                <label asp-for="Mother" class="form-label"></label>
+            </div>
+            <div class="form-floating">
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <label asp-for="Description" class="form-label"></label>
+            </div>
+            <button type="submit" class="btn btn-success">Speichern</button>
+        </form>
+    </div>
+    <div class="row mt-5">
+        @foreach (var image in Model.Images)
+        {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card">
+                    <img src="@Url.GetDogImageUrl(Model.Id, image, true)" class="card-img-top" alt=""/>
+                    @if (image != Model.TitleImage)
+                    {
+                        <form asp-controller="Dogs" asp-action="SetTitleImageForDog"
+                              asp-route-dogId="@Model.Id" asp-route-fileName="@image"
+                              class="card-body">
+                            <button class="btn btn-primary w-100">
+                                Als Titelbild benutzen
+                            </button>
+                        </form>
+                    }
+                    <form asp-controller="Dogs" asp-action="DeleteImageFromDog"
+                          asp-route-dogId="@Model.Id" asp-route-fileName="@image"
+                          class="card-body">
+                        <button class="btn btn-danger w-100">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100">
+                <img src="" class="card-img-top placeholder h-100 cursor-unset" alt=""/>
+                <div class="card-body">
+                    <div class="form-center mt-auto">
+                        <form enctype="multipart/form-data" asp-controller="Dogs" asp-action="AddImageToDog"
+                              asp-route-dogId="@Model.Id">
+                            <div class="input-group">
+                                <input type="file" accept="image/jpeg" class="form-control" name="Image" title="Neues Foto"/>
+                                <button type="submit" class="btn btn-success">Speichern</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
